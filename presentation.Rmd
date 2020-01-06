@@ -1,0 +1,73 @@
+---
+title: "RPanda Training Solutions"
+subtitle: A Simulator for Commodities Asset Optimization 
+author: 
+- "Philippe Cote  pcote@rpanda.co"
+- "Nima Safaian nsafaian@rpanda.co"
+date: '`r Sys.Date()`'
+output:
+  ioslides_presentation:
+    highlight: espresso
+    incremental: no
+    widescreen: yes
+logo: iconRP.png
+widescreen: true
+smaller: true
+transition: linear
+transition-speed: slow
+---
+
+```{r include=FALSE}
+library(knitr)
+library(leaflet)
+```
+
+## Who are we? 
+
+
+```{r echo=FALSE, fig.height=10, fig.width=10, warning=FALSE}
+rpandaIcon <- makeIcon(
+  iconUrl = "iconRP.png",
+  iconWidth = 50, iconHeight = 50,
+)
+leaflet() %>%
+  setView(lng = -114, lat = 51, zoom = 5) %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=-114, lat=51,icon=rpandaIcon,popup = "GGGGGGG")
+  
+```
+
+## RPanda Idea in a nutshell
+
+<div class="columns-2">
+<img src="designSmall.png" alt="Orginal Design" style="width:400px;height:400px;">
+<div>
+- **Problem being solved:**
+- **Who are we solving:**
+- **Our UVP:**
+- **Solution:** 
+</div>
+</div>
+
+## Platform and App Design 
+
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vR1irgFzMgSxxRWiEZUT9Hc5bmpsWRy31zCefGX2AHZH2P2HOybLunwLRCCjXnM9QdPaE7nQD283mlO/pub?w=1440&h=1080" alt="Orginal Design" style="width:800px;height:800px;">
+
+
+
+## Real Time Simulation
+
+<div align="center">
+<iframe width="400" height="150" src="https://www.youtube.com/embed/_LGkbvkCS3I" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
+## Scaling Challenges - Lesson Learned!
+
+<img src="https://rstudio.github.io/shinyloadtest/articles/images/loop.svg" alt="Orginal Design" style="width:400px;height:400px;">
+
+## Where we are going
+
+
+## 
+ 
