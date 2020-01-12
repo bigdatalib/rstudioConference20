@@ -20,39 +20,111 @@ transition-speed: slow
 ```{r include=FALSE}
 library(knitr)
 library(leaflet)
+library(tidyverse)
 ```
 
-## Who are we? 
+## Who are we and where we are from? 
 
 
-```{r echo=FALSE, fig.height=10, fig.width=10, warning=FALSE}
+```{r echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
 rpandaIcon <- makeIcon(
   iconUrl = "iconRP.png",
   iconWidth = 50, iconHeight = 50,
 )
+
+nimaIcon <- makeIcon(
+  iconUrl = "Nima.png",
+  iconWidth = 50, iconHeight = 50,
+)
+
+philIcon <- makeIcon(
+  iconUrl = "Phil.png",
+  iconWidth = 50, iconHeight = 50,
+)
+
+template<-"<b>Current:</b> {currentjob} </br> Former: {former} </br> in: <a href={linkedin}>Linkedin Profile</a>"
+
+nimaProfile<- glue::glue(template,currentjob="Head of Market Analytics - Cenovus",former="Scotiabank and BP",linkedin="https://www.linkedin.com/in/nimasafaian/")
+
+philProfile<- glue::glue(template,currentjob="Sorensen Exec Prof UofA",former="Cenovus,Scotiabank and BP",linkedin="https://www.linkedin.com/in/philippe-cote-88b1769/")
+
+rpandaProfile<-"<b>rpanda training solutions</b></br>Calgary Based - BC Registered Company
+</br>Education Technology</br>Web:<a href=http://rpanda.co>rpanda.co</a>"
+
+
+load("/cloud/project/map.RData")
+tanks<-tribble(~name,~lng,~lat,
+        "STOR1",-96.751,35.953,
+        "STOR2",-93.985,30.002,
+        "STOR3",-95.313,28.959
+        )
+production<-tribble(~name,~lng,~lat,
+                    "Production",-97.534,36.256)
+
 leaflet() %>%
-  setView(lng = -114, lat = 51, zoom = 5) %>%
-  addTiles() %>%  # Add default OpenStreetMap map tiles
-  addMarkers(lng=-114, lat=51,icon=rpandaIcon,popup = "GGGGGGG")
+  addTiles() %>%
+  setView(lng = -114,lat=51,zoom = 6) %>%
+  leaflet::addLegend("topleft", 
+                     colors = c("black","blue","green"),
+                     labels = c("Storage","Production","Oil Pipe"), 
+                     opacity = 0.8) %>%
+addPolylines(data=crudepipes,color = "green",
+             weight = 1,
+             group="Complexity") %>%
+  addCircleMarkers(data=refineries,color=~dplyr::case_when(Cokin_Mbpd>0~"black",TRUE~"brown")
+                   ,radius =~AD_Mbpd/100,popup =~paste0(Corp,"-",Site),group = "Complexity") %>% 
+  addCircleMarkers(data=tanks,color="black",radius =2,popup =~name,group = "Complexity") %>%
+  addCircleMarkers(data=production,color="blue",radius =5,popup =~name,group = "Complexity") %>%
+  addMarkers(lng=-114, lat=51,icon=rpandaIcon,popup = rpandaProfile,group="Who we are") %>%
+  addMarkers(lng=-113, lat=52,icon=nimaIcon,popup = nimaProfile,group="Who we are") %>%
+  addMarkers(lng=-115, lat=52,icon=philIcon,popup = philProfile,group="Who we are") %>%
+  addLayersControl(baseGroups = c("Who we are","Complexity")) 
+
+  
+
+
+
   
 ```
 
-## RPanda Idea in a nutshell
+
+## Commodities trading business
+
+* Commodities trading is the art and science of identifing oppertunites through complexity
+* Commodities trading is monetizing transformation across:
+  - Time 
+  - Location 
+  - Form
+* Physical supply/demand/movements cause price dislocations, the ability to identify opportunities is the key to monetize it.
+* Key to successful trading physical commodities is to scan opportunities across time, location, and form and monetize using financial and physical instruments  
+
+
+
+## RPanda idea in a nutshell
 
 <div class="columns-2">
 <img src="designSmall.png" alt="Orginal Design" style="width:400px;height:400px;">
 <div>
-- **Problem being solved:**
-- **Who are we solving:**
-- **Our UVP:**
-- **Solution:** 
+- **Problem being solved:** Trader eduction and assessment for physical energy and commodities in a simulated platform
+- **Who are we solving:** Universities and Academic / Commodities Trade shops / Producers and Consumers
+- **Our UVP:** Incorporating many years of industry exprience hiring and developing trader talent
+- **Solution:** (1) *Multiday trader game* (2) *Real time trader game*
 </div>
 </div>
 
 ## Platform and App Design 
 
+<div class="columns-2">
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vR1irgFzMgSxxRWiEZUT9Hc5bmpsWRy31zCefGX2AHZH2P2HOybLunwLRCCjXnM9QdPaE7nQD283mlO/pub?w=1440&h=1080" alt="Orginal Design" style="width:800px;height:800px;">
+<div>
 
+- **100% Open soruce Code: R/Shiny/Python**
+- **Open Source of helper using RTL Package**
+- **Modular design using Plumber API**
+- **Amazon AWS Scalable design** 
+
+</div>
+</div>
 
 
 ## Real Time Simulation
@@ -64,10 +136,24 @@ leaflet() %>%
 
 ## Scaling Challenges - Lesson Learned!
 
+<div class="columns-2">
 <img src="https://rstudio.github.io/shinyloadtest/articles/images/loop.svg" alt="Orginal Design" style="width:400px;height:400px;">
+<div>
 
-## Where we are going
+- **Scaling > 10 users was challenging**
+- *Use Profiler and shinycannon to debug performance*
+- *Removed Disk Read/Write Dependency*
+- *Avoid using ggplot*
+- *AWS API to Scale up/down nodes*
+ 
+</div>
+</div>
+
+## Where we are going?
+
+- Signing up more universities, increase user base
+- Games as part trading education curriculims
+- Incorporate NLP and Learning Algotritmes to assess trader competencies
 
 
-## 
  
