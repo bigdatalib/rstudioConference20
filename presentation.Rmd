@@ -23,8 +23,7 @@ library(leaflet)
 library(tidyverse)
 ```
 
-## Who are we and where we are from? 
-
+## Our Journey 
 
 ```{r echo=FALSE, fig.height=10, fig.width=10, message=FALSE, warning=FALSE}
 rpandaIcon <- makeIcon(
@@ -46,13 +45,13 @@ template<-"<b>Current:</b> {currentjob} </br> Former: {former} </br> in: <a href
 
 nimaProfile<- glue::glue(template,currentjob="Head of Market Analytics - Cenovus",former="Scotiabank and BP",linkedin="https://www.linkedin.com/in/nimasafaian/")
 
-philProfile<- glue::glue(template,currentjob="Sorensen Exec Prof UofA",former="Cenovus,Scotiabank and BP",linkedin="https://www.linkedin.com/in/philippe-cote-88b1769/")
+philProfile<- glue::glue(template,currentjob="Sorensen Exec Prof UofA",former="Cenovus, Scotiabank, BP, Bank of Canada",linkedin="https://www.linkedin.com/in/philippe-cote-88b1769/")
 
 rpandaProfile<-"<b>rpanda training solutions</b></br>Calgary Based - BC Registered Company
 </br>Education Technology</br>Web:<a href=http://rpanda.co>rpanda.co</a>"
 
 
-load("/cloud/project/map.RData")
+load("map.RData")
 tanks<-tribble(~name,~lng,~lat,
         "STOR1",-96.751,35.953,
         "STOR2",-93.985,30.002,
@@ -79,49 +78,53 @@ addPolylines(data=crudepipes,color = "green",
   addMarkers(lng=-113, lat=52,icon=nimaIcon,popup = nimaProfile,group="Who we are") %>%
   addMarkers(lng=-115, lat=52,icon=philIcon,popup = philProfile,group="Who we are") %>%
   addLayersControl(baseGroups = c("Who we are","Complexity")) 
-
-  
-
-
-
-  
 ```
 
+## Commodities Trading
 
-## Commodities trading business
-
-* Commodities trading is the art and science of identifing oppertunites through complexity
-* Commodities trading is monetizing transformation across:
+* Complex supply chain with physical commodities.
++ Outages and/or Imbalances cause price dislocations $=$ opportunities.
++ Supply chain assets are real-options in multiple state-spaces:
   - Time 
   - Location 
-  - Form
-* Physical supply/demand/movements cause price dislocations, the ability to identify opportunities is the key to monetize it.
-* Key to successful trading physical commodities is to scan opportunities across time, location, and form and monetize using financial and physical instruments  
-
-
+  - Grade
++ Successful traders are experts at:
+  - Understanding this optionality.
+  + Monetizing it through acquiring access to high value assets.
+  + Monetizing it through the financial and physical instruments.  
 
 ## RPanda idea in a nutshell
 
 <div class="columns-2">
-<img src="designSmall.png" alt="Orginal Design" style="width:400px;height:400px;">
+<img src="designSmall.png" alt="Original Design" style="width:400px;height:500px;">
 <div>
-- **Problem being solved:** Trader eduction and assessment for physical energy and commodities in a simulated platform
-- **Who are we solving:** Universities and Academic / Commodities Trade shops / Producers and Consumers
-- **Our UVP:** Incorporating many years of industry exprience hiring and developing trader talent
-- **Solution:** (1) *Multiday trader game* (2) *Real time trader game*
+<span style="color:black; font-weight:bold">Problem</span> <br>
+Trader Competencies Assessment and Development <br>
+<br>
+<span style="color:black; font-weight:bold">For Whom</span> <br>
+Universities and Corporates in commodities space <br>
+<br>
+<span style="color:black; font-weight:bold">Unique Value Proposition</span> <br>
+Leading industry experience in hiring, developing and leading traders, backed by quantitative skills <br>
+<br>
+<span style="color:black; font-weight:bold">Solution</span> <br>
+- Multi day trader game <br>
+- Real time trader game <br>
+- Negotiation Game 
 </div>
 </div>
 
 ## Platform and App Design 
 
 <div class="columns-2">
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vR1irgFzMgSxxRWiEZUT9Hc5bmpsWRy31zCefGX2AHZH2P2HOybLunwLRCCjXnM9QdPaE7nQD283mlO/pub?w=1440&h=1080" alt="Orginal Design" style="width:800px;height:800px;">
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vR1irgFzMgSxxRWiEZUT9Hc5bmpsWRy31zCefGX2AHZH2P2HOybLunwLRCCjXnM9QdPaE7nQD283mlO/pub?w=1440&h=1080" alt="Original Design" style="width:800px;height:800px;">
 <div>
 
-- **100% Open soruce Code: R/Shiny/Python**
-- **Open Source of helper using RTL Package**
-- **Modular design using Plumber API**
-- **Amazon AWS Scalable design** 
+- **100% Open source Code: <br> `R`, `shiny`, `python`**
+- **Open Source R Package helper** <br> https://github.com/risktoollib/RTL
+- **Modular design using `Plumber API`**
+- **Amazon AWS Scalable design**
+- **Asset Plug-ins** with R Package.
 
 </div>
 </div>
@@ -141,19 +144,22 @@ addPolylines(data=crudepipes,color = "green",
 <div>
 
 - **Scaling > 10 users was challenging**
-- *Use Profiler and shinycannon to debug performance*
-- *Removed Disk Read/Write Dependency*
-- *Avoid using ggplot*
-- *AWS API to Scale up/down nodes*
- 
+- **Used `Profiler` and `shinycannon` to debug performance**
+- **Removed Disk Read-Write Dependency**
+- **`Plotly` over `ggplot` for faster rendering**
+- **AWS API to Scale up/down nodes**
+- **Cloud deployment wins in Enterprise Deployment**
 </div>
 </div>
 
-## Where we are going?
+## What's Next
 
-- Signing up more universities, increase user base
-- Games as part trading education curriculims
-- Incorporate NLP and Learning Algotritmes to assess trader competencies
+- Universities user-base in the context of trading courses.
+- Development of Global Virtual Inter-University competition.
+- Incorporate NLP and Learning Algorithms to assess trader competencies.
+- Current Advanced Discussions with leading Corporates.
+  + Active presence in commodities trading.
+  + Limited resources for in-house development.
 
 
  
