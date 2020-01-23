@@ -87,11 +87,12 @@ addPolylines(data=crudepipes,color = "green",
 + Supply chain assets are real-options in multiple state-spaces:
   - Time 
   - Location 
-  - Grade
+  - Form
 + Successful traders are experts at:
-  - Understanding this optionality.
-  + Monetizing it through acquiring access to high value assets.
-  + Monetizing it through the financial and physical instruments.  
+  * Understanding this optionality.
+   + Monetizing it through acquiring access to high value assets.
+   + Monetizing it through the financial and physical instruments.
+  * Can see oppertunities through complexity 
 
 ## RPanda idea in a nutshell
 
@@ -133,7 +134,7 @@ Leading industry experience in hiring, developing and leading traders, backed by
 ## Real Time Simulation
 
 <div align="center">
-<iframe width="400" height="150" src="https://www.youtube.com/embed/_LGkbvkCS3I" frameborder="0" allowfullscreen></iframe>
+<iframe width="400" height="150" src="https://www.youtube.com/embed/B_xQR70Lq18" frameborder="0" allowfullscreen></iframe>
 </div>
 
 
@@ -148,7 +149,7 @@ Leading industry experience in hiring, developing and leading traders, backed by
 - **Removed Disk Read-Write Dependency**
 - **`Plotly` over `ggplot` for faster rendering**
 - **AWS API to Scale up/down nodes**
-- **Cloud deployment wins in Enterprise Deployment**
+
 </div>
 </div>
 
